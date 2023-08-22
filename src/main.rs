@@ -1,5 +1,7 @@
 mod sql;
+use crate::sql::driver;
 
 fn main() {
-    println!("Hello, world!");
+    println!("{}", driver::build_conn_string());
+    driver::open_connection();
 }
