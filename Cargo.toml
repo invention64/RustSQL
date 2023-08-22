@@ -6,4 +6,6 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+libz-sys = "1.1.12"
 mysql = "24.0.0"
+toml = "0.7.6"
