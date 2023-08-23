@@ -26,8 +26,15 @@ pub mod driver {
         // parse toml
         let secrets = file_content.parse::<Table>().unwrap();
 
+        // format host and database since toml returns a string with quotes
+        let host = secrets["host"].to_string().replace("\"","");
+        let database = secrets["database"].to_string().replace("\"","");
+        // also need to switch from double to single quotes to not cause issues with sql
+        let user = secrets["user"].to_string().replace("\"","");
+        let password = secrets["password"].to_string().replace("\"","");
+
         // build connection string
-        let output: String = format!("mysql://{}:{}@{}/{}", secrets["user"], secrets["password"], secrets["host"], secrets["database"]);
+        let output: String = format!("mysql://{user}:{password}@{host}/{database}", user=user, password=password, host=host, database=database);
 
         return output;
     }
